@@ -37,7 +37,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'react/function-component-definition': 'off',
         'no-underscore-dangle': 'off',
-        'max-len': ['error', { ignoreComments: true }],
+        'max-len': ['error', { ignoreComments: true, ignoreAttribute: ['data-testid'] }],
 
     },
     globals: {
