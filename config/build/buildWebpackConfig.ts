@@ -22,7 +22,9 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
             rules: buildLoaders(options)
         },
         performance: {
-            maxEntrypointSize: 400000
+            hints: false,
+            maxEntrypointSize: 512000,
+            maxAssetSize: 512000
         },
         resolve: buildResolvers(options),
         devtool: isDev ? "inline-source-map" : undefined,
