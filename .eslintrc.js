@@ -8,6 +8,7 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
+        'prettier'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -21,6 +22,7 @@ module.exports = {
         'react',
         '@typescript-eslint',
         'i18next',
+        'prettier'
     ],
     rules: {
         'react/jsx-indent': [2, 4],
@@ -32,7 +34,7 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': 'warn',
+        "no-unused-vars": "warn",
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
@@ -42,6 +44,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
+
             'error',
             {
                 markupOnly: true,
