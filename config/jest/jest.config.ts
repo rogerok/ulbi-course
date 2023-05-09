@@ -3,37 +3,37 @@
  * https://jestjs.io/docs/configuration
  */
 
-import path from 'path';
+import path from "path";
 
 export default {
     clearMocks: true,
-    testEnvironment: 'jsdom',
+    testEnvironment: "jsdom",
     coveragePathIgnorePatterns: [
-        '\\\\node_modules\\\\',
+        "\\\\node_modules\\\\"
     ],
     moduleFileExtensions: [
-        'js',
-        'jsx',
-        'ts',
-        'tsx',
-        'json',
-        'node',
+        "js",
+        "jsx",
+        "ts",
+        "tsx",
+        "json",
+        "node"
     ],
     moduleDirectories: [
-        'node_modules',
+        "node_modules"
     ],
     modulePaths: [
-        '<rootDir>src',
+        "<rootDir>src"
     ],
     testMatch: [
-        // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
-        '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
+    // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
+        "<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"
     ],
-    rootDir: '../../',
-    setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+    rootDir: "../../",
+    setupFilesAfterEnv: ["<rootDir>config/jest/setupTests.ts"],
     moduleNameMapper: {
-        '\\.s?css$': 'identity-obj-proxy',
-        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        "\\.s?css$": "identity-obj-proxy",
+        "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx")
     },
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
@@ -76,7 +76,9 @@ export default {
     // globalTeardown: undefined,
 
     // A set of global variables that need to be available in all test environments
-    // globals: {},
+    globals: {
+        __IS__DEV: true
+    }
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
     // maxWorkers: "50%",
