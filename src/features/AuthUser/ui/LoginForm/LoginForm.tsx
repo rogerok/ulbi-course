@@ -17,8 +17,12 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
-            <Input autoFocus type="text" placeholder="username" className={cls.input} />
-            <Input type="text" placeholder="password" className={cls.input} />
+            <Input
+                autoFocus
+                type="text"
+                placeholder={t("Имя пользователя")}
+                className={cls.input} />
+            <Input type="text" placeholder={t("Пароль")} className={cls.input} />
             <Button className={cls.loginBtn}>{t("Войти")}</Button>
         </div>
     );
