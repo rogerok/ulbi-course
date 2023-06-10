@@ -8,7 +8,7 @@ import { getUserAuthData, userActions } from "entities/User";
 import cls from "./Navbar.module.scss";
 
 interface NavbarProps {
-    className?: string;
+  className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
@@ -39,7 +39,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <Button theme={ButtonTheme.ClEAR_INVERTED} onClick={onShowModal}>{t("Войти")}</Button>
-            <LoginModal isOpen={open} onClose={onCloseModal} />
+            {open && <LoginModal isOpen={open} onClose={onCloseModal} />}
         </div>
     );
 };
