@@ -14,8 +14,14 @@
     }
   ],
   "profile": {
-    "name": "admin",
-    "password": "admin"
+    "first": "Lutik",
+    "lastname": "Bug",
+    "age": 2,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Moscow",
+    "username": "admin",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlwT8m0hdjYafx78oVG4OTOODVdCfjEvtHxK5rYROwMZmoyIs7PRmVv8RHG_HiUrdQjk&usqp=CAU"
   },
   "users": [
     {
