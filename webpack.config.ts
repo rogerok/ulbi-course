@@ -24,7 +24,7 @@ export default (env: BuildEnv) => {
         apiUrl
     });
 
-    config.plugins.push(new DefinePlugin({
+    config?.plugins?.push(new DefinePlugin({
         __IS_DEV__: true
     }));
 

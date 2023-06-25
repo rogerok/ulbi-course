@@ -13,7 +13,7 @@ import { NavigateOptions } from "react-router";
 import { AxiosInstance } from "axios";
 
 export interface StateSchema {
-  user?: UserSchema;
+  user: UserSchema;
 
   // async reducers
   loginForm?: LoginSchema;
@@ -36,7 +36,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 }
 
 export interface ThunkExtraArg {
-  navigate: (to: To, options?: NavigateOptions) => void;
+  navigate?: (to: To, options?: NavigateOptions) => void;
   api: AxiosInstance;
 }
 

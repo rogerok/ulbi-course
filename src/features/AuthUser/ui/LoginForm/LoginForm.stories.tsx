@@ -30,7 +30,7 @@ Primary.decorators = [StoreDecorator({
         username: "sdw",
         password: "123",
         error: "ERROR"
-    }
+    } 
 })];
 export const Loading = Template.bind({});
 Primary.args = {};

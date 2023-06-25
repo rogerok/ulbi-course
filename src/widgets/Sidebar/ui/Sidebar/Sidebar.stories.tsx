@@ -22,7 +22,7 @@ Light.args = {};
 
 export const Dark = Template.bind({});
 Dark.args = {
-    children: "Text"
+
 };
 
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
