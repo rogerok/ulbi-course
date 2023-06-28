@@ -58,7 +58,7 @@ module.exports = {
             }
         ],
         "max-len": ["error", { ignoreComments: true, code: 100 }],
-        "no-under": false,
+        "no-undef": "off"
     },
     globals: {
         __IS_DEV__: true,

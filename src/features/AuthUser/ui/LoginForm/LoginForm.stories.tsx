@@ -6,11 +6,11 @@ import LoginForm from "features/AuthUser/ui/LoginForm/LoginForm";
 
 
 export default {
-    title: "features/LoginForm",
-    component: LoginForm,
-    argTypes: {
-        backgroundColor: { control: "color" }
-    }
+  title: "features/LoginForm",
+  component: LoginForm,
+  argTypes: {
+    backgroundColor: { control: "color" }
+  }
 } as ComponentMeta<typeof LoginForm>;
 
 const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
@@ -18,26 +18,26 @@ const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [StoreDecorator({
-    loginForm: {
-        username: "sdw",
-        password: "123"
-    }
+  loginForm: {
+    username: "sdw",
+    password: "123"
+  }
 })];
-export const withError = Template.bind({});
+export const WithError = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    loginForm: {
-        username: "sdw",
-        password: "123",
-        error: "ERROR"
-    } 
+WithError.decorators = [StoreDecorator({
+  loginForm: {
+    username: "sdw",
+    password: "123",
+    error: "ERROR"
+  }
 })];
 export const Loading = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    loginForm: {
-        username: "sdw",
-        password: "123",
-        isLoading: true
-    }
+Loading.decorators = [StoreDecorator({
+  loginForm: {
+    username: "sdw",
+    password: "123",
+    isLoading: true
+  }
 })];
