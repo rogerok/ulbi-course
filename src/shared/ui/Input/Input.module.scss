@@ -1,0 +1,18 @@
+.Input {
+  border: 1px solid var(--primary-color);
+
+  &:focus {
+    outline: 1px solid var(--secondary-color);
+
+  }
+}
+
+.readOnly {
+  opacity: 0.7;
+  pointer-events: none;
+  border: 1px solid var(--grey-light);
+
+  &:focus {
+    outline: none;
+  }
+}
