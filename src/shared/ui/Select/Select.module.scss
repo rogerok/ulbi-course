@@ -1,20 +1,20 @@
 .wrapper {
-  display: flex;
+    display: flex;
 }
 
 .label {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .Select {
-  background: none;
-  outline: none;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  padding-right: 10px;
+    background: none;
+    outline: none;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding-right: 10px;
 }
 
 .option {
-  background: var(--inverted-bg-color);
-  color: var(--inverted-primary-color);
+    background: var(--inverted-bg-color);
+    color: var(--inverted-primary-color);
 }

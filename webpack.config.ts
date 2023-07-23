@@ -25,11 +25,11 @@ export default (env: BuildEnv) => {
     project: "frontend",
   });
 
-  config?.plugins?.push(
-    new DefinePlugin({
-      __IS_DEV__: true,
-    })
-  );
+  // config?.plugins?.push(
+  //   new DefinePlugin({
+  //     __IS_DEV__: true,
+  //   })
+  // );
 
   return config;
 };
