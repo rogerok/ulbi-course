@@ -11,6 +11,7 @@ import { ProfileSchema } from "entities/Profile";
 import { To } from "react-router-dom";
 import { NavigateOptions } from "react-router";
 import { AxiosInstance } from "axios";
+import { ArticleSchema } from "entities/Article";
 
 export interface StateSchema {
   user: UserSchema;
@@ -18,6 +19,7 @@ export interface StateSchema {
   // async reducers
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
+  article?: ArticleSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

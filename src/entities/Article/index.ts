@@ -1,2 +1,6 @@
 export { ArticleDetails } from "./ui/ArticleDetails/ArticleDetails";
-export { Article } from "./model/types/Article";
+export { Article, ArticleSchema } from "./model/types/Article";
+export {
+  articleDetailsReducer,
+  articleDetailsActions,
+} from "./model/slice/articleDetailsSlice";
