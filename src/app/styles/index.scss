@@ -5,24 +5,24 @@
 @import "themes/purple";
 
 body {
-  font: var(--font-m);
-  color: var(--primary-color);
+    font: var(--font-m);
+    color: var(--primary-color);
 }
 
 .app {
-  min-height: 100vh;
-  background: var(--bg-color);
-  font: var(--font-m);
-  color: var(--primary-color);
+    min-height: 100vh;
+    background: var(--bg-color);
+    font: var(--font-m);
+    color: var(--primary-color);
 }
 
 .content-page {
-  display: flex;
+    display: flex;
 }
 
 .page-wrapper {
-  flex-grow: 1;
-  padding: 20px 20px 20px 40px;
-  overflow: auto;
-  height: calc(100vh - 50px);
+    flex-grow: 1;
+    padding: 20px 20px 20px 40px;
+    overflow: auto;
+    height: calc(100vh - 50px);
 }
