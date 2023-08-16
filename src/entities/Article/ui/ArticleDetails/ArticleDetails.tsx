@@ -1,21 +1,30 @@
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
+
 import {
   DynamicModuleLoader,
   ReducerList,
 } from "shared/lib/components/DynamicModuleLoader";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
-import { useSelector } from "react-redux";
-import { Text, TextAlign, TextTheme } from "shared/ui/Text/Text";
+import { Text, TextAlign, TextSize, TextTheme } from "shared/ui/Text/Text";
 import { Skeleton } from "shared/ui/Skeleton/Skeleton";
+import { Avatar } from "shared/ui/Avatar/Avatar";
+import ViewIcon from "shared/assets/icons/views.svg";
+import CalendarIcon from "shared/assets/icons/calendar.svg";
+import { Icon } from "shared/ui/Icon/Icon";
+import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
+import { fetchArticleDetailsData } from "../../model/services/fetchArticleDetailsData";
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsLoading,
-} from "../../model/selectors/selectors";
-import { fetchArticleDetailsData } from "../../model/services/fetchArticleDetailsData";
-import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
+} from "../../model/selectors/articleSelectors/articleSelectors";
+import { ArticleBlock, BlockTypes } from "../../model/types/Article";
+import { ArticleBlockCode } from "../ArticleBlockCode/ArticleBlockCode";
+import { ArticleBlockImage } from "../ArticleBlockImage/ArticleBlockImage";
+import { ArticleBlockText } from "../ArticleBlockText/ArticleBlockText";
 import cls from "./ArticleDetails.module.scss";
 
 interface ArticleProps {
@@ -43,8 +52,29 @@ export const ArticleDetails = memo((props: ArticleProps) => {
 
   let content;
 
-  if (true) {
-    // eslint-disable-next-line i18next/no-literal-string
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    let component;
+
+    switch (block.type) {
+      case BlockTypes.TEXT:
+        component = <ArticleBlockText block={block} key={block.id} />;
+        break;
+
+      case BlockTypes.IMAGE:
+        component = <ArticleBlockImage block={block} key={block.id} />;
+        break;
+
+      case BlockTypes.CODE:
+        component = <ArticleBlockCode block={block} key={block.id} />;
+        break;
+      default:
+        return null;
+    }
+
+    return component;
+  }, []);
+
+  if (isLoading) {
     content = (
       <div>
         <Skeleton
@@ -60,7 +90,6 @@ export const ArticleDetails = memo((props: ArticleProps) => {
       </div>
     );
   } else if (error) {
-    // eslint-disable-next-line i18next/no-literal-string
     content = (
       <Text
         text={t("Произошла непредвиденная ошибка")}
@@ -68,8 +97,28 @@ export const ArticleDetails = memo((props: ArticleProps) => {
         theme={TextTheme.ERROR}
       />
     );
-  } else {
-    content = <div> {t("Article details")}</div>;
+  } else if (data) {
+    content = (
+      <div className={cls.articleTopInfo}>
+        <Avatar
+          src={data.img}
+          alt={data.title}
+          className={cls.avatar}
+          size={150}
+        />
+        <div className={cls.articleInfo}>
+          <Icon Svg={ViewIcon} />
+          <Text text={String(data.views)} className={cls.articleInfoText} />
+        </div>
+        <div className={cls.articleInfo}>
+          <Icon Svg={CalendarIcon} />
+          <Text text={data.createdAt} className={cls.articleInfoText} />
+        </div>
+        <Text text={data.title} textSize={TextSize.XL} />
+        <Text text={data.subtitle} />
+        {data.blocks.map(renderBlock)}
+      </div>
+    );
   }
 
   return (

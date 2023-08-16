@@ -5,22 +5,19 @@ import { StoreProvider } from "app/providers/StoreProvider";
 import App from "./app/App";
 import "app/styles/index.scss";
 
-
 import "./shared/config/i18n/i18n";
 import { ErrorBoundary } from "./app/providers/ErrorBoundary";
 
 render(
-    <BrowserRouter>
-        <StoreProvider>
-            <ErrorBoundary>
-                <ThemeProvider>
-                    <App />
-                </ThemeProvider>
-            </ErrorBoundary>
-        </StoreProvider>
-    </BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </ErrorBoundary>
+    </StoreProvider>
+  </BrowserRouter>,
 
-    ,
-    document.getElementById("root")
+  document.getElementById("root")
 );
-

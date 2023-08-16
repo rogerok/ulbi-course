@@ -15,27 +15,24 @@ export interface ArticleBlockBase {
   type: BlockTypes;
 }
 
-export interface ArticleBlockCode extends ArticleBlockBase {
+export interface ArticleCode extends ArticleBlockBase {
   code: string;
   type: BlockTypes.CODE;
 }
 
-export interface ArticleBlockText extends ArticleBlockBase {
+export interface ArticleText extends ArticleBlockBase {
   paragraphs: string[];
   title: string;
   type: BlockTypes.TEXT;
 }
 
-export interface ArticleBlockImage extends ArticleBlockBase {
+export interface ArticleImage extends ArticleBlockBase {
   src: string;
   title: string;
   type: BlockTypes.IMAGE;
 }
 
-export type ArticleBlock =
-  | ArticleBlockCode
-  | ArticleBlockText
-  | ArticleBlockImage;
+export type ArticleBlock = ArticleCode | ArticleText | ArticleImage;
 
 export interface Article {
   id: string;

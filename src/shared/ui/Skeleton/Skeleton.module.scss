@@ -15,7 +15,13 @@
         right: 0;
         height: 100%;
         width: 100%;
-        background: linear-gradient(110deg, var(--inverted-bg-color) 8%, var(--bg-color) 18%, var(--inverted-bg-color) 33%);
+        background:
+            linear-gradient(
+                110deg,
+                var(--inverted-bg-color) 8%,
+                var(--bg-color) 18%,
+                var(--inverted-bg-color) 33%
+            );
         background-size: 200% 100%;
         animation: 1.5s shine linear infinite;
     }

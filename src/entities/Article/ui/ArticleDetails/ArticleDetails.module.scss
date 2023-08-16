@@ -3,7 +3,8 @@
 }
 
 .avatar {
-    margin: 0 auto;
+    margin: 0 auto 40px;
+    display: block;
 }
 
 .title {
@@ -12,4 +13,13 @@
 
 .skeleton {
     margin-top: 15px;
+}
+
+.articleInfo {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.articleInfoText {
+    margin-left: 12px;
 }
