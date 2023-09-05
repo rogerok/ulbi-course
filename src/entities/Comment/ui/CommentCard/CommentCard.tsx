@@ -4,6 +4,9 @@ import { classNames } from "shared/lib/classNames/classNames";
 import { Skeleton } from "shared/ui/Skeleton/Skeleton";
 import { Avatar } from "shared/ui/Avatar/Avatar";
 import { Text } from "shared/ui/Text/Text";
+import { Link } from "react-router-dom";
+import { AppLink } from "shared/ui/AppLink/AppLink";
+import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { CommentModel } from "../../model/types/comment";
 import cls from "./CommentCard.module.scss";
 
@@ -38,7 +41,10 @@ export const CommentCard = memo((props: CommentCardProps) => {
   } else if (comment) {
     content = (
       <>
-        <div className={cls.header}>
+        <AppLink
+          to={`${RoutePath.profile}${comment.user.id}`}
+          className={cls.header}
+        >
           {comment.user.avatar && (
             <Avatar
               src={comment.user.avatar}
@@ -49,7 +55,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
           )}
 
           <Text text={comment.user.username} className={cls.name} />
-        </div>
+        </AppLink>
         <Text text={comment.text} />
       </>
     );
