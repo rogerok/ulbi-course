@@ -95,7 +95,7 @@ describe("profileSlice", () => {
     expect(
       profileReducer(
         state as ProfileSchema,
-        updateProfileData.fulfilled(data, "")
+        updateProfileData.fulfilled(data, "1")
       )
     ).toEqual({
       isLoading: false,

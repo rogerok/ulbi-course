@@ -52,20 +52,19 @@ export const ArticleDetails = memo((props: ArticleProps) => {
 
   let content;
 
-  const renderBlock = useCallback((block: ArticleBlock) => {
+  const renderBlock = useCallback((block: ArticleBlock, index) => {
     let component;
-
     switch (block.type) {
       case BlockTypes.TEXT:
-        component = <ArticleBlockText block={block} key={block.id} />;
+        component = <ArticleBlockText block={block} key={index} />;
         break;
 
       case BlockTypes.IMAGE:
-        component = <ArticleBlockImage block={block} key={block.id} />;
+        component = <ArticleBlockImage block={block} key={index} />;
         break;
 
       case BlockTypes.CODE:
-        component = <ArticleBlockCode block={block} key={block.id} />;
+        component = <ArticleBlockCode block={block} key={index} />;
         break;
       default:
         return null;
@@ -116,7 +115,7 @@ export const ArticleDetails = memo((props: ArticleProps) => {
         </div>
         <Text text={data.title} textSize={TextSize.XL} />
         <Text text={data.subtitle} />
-        {data.blocks.map(renderBlock)}
+        {data.blocks.map((block, index) => renderBlock(block, index))}
       </div>
     );
   }

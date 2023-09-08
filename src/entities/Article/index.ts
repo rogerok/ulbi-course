@@ -4,3 +4,5 @@ export {
   articleDetailsReducer,
   articleDetailsActions,
 } from "./model/slice/articleDetailsSlice";
+
+export { getArticleDetailsData } from "./model/selectors/articleSelectors/articleSelectors";

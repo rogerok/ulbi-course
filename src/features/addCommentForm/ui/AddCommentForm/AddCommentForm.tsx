@@ -9,30 +9,27 @@ import {
   DynamicModuleLoader,
   ReducerList,
 } from "shared/lib/components/DynamicModuleLoader";
-import {
-  getCommentFormText,
-  getCommentFormError,
-} from "../../model/selectors/addComentFormSelectors";
+import { getCommentFormText } from "../../model/selectors/addComentFormSelectors";
 import {
   addCommentActions,
   addCommentReducer,
 } from "../../model/slices/addCommentFormSlice";
 import cls from "./AddCommentForm.module.scss";
 
-interface AddCommentFormProps {
+export interface AddCommentFormProps {
   className?: string;
+  onSendComment: (commentText: string) => void;
 }
 
 const reducersList: ReducerList = {
   addCommentForm: addCommentReducer,
 };
 
-export const AddCommentForm = memo((props: AddCommentFormProps) => {
-  const { className } = props;
+const AddCommentForm = memo((props: AddCommentFormProps) => {
+  const { className, onSendComment } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const commentText = useSelector(getCommentFormText);
-  const error = useSelector(getCommentFormError);
 
   const handleTextChange = useCallback(
     (value: string) => {
@@ -41,21 +38,31 @@ export const AddCommentForm = memo((props: AddCommentFormProps) => {
     [dispatch]
   );
 
+  const handleSubmit = useCallback(() => {
+    if (commentText) {
+      onSendComment(commentText);
+    }
+  }, [onSendComment, commentText]);
+
   return (
     <DynamicModuleLoader reducers={reducersList}>
       <div className={classNames(cls.AddCommentForm, {}, [className])}>
         <form className={cls.form}>
           <Input
+            rows={10}
+            multiline
             placeholder={t("Введите текст комментария")}
             onChange={handleTextChange}
             className={cls.input}
             value={commentText}
           />
+          <Button theme={ButtonTheme.OUTLINE} onClick={handleSubmit}>
+            {t("Отправить")}
+          </Button>
         </form>
-        <Button theme={ButtonTheme.OUTLINE} type="submit">
-          {t("Отправить")}
-        </Button>
       </div>
     </DynamicModuleLoader>
   );
 });
+
+export default AddCommentForm;

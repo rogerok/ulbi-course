@@ -7,6 +7,7 @@ import { Loader } from "shared/ui/Loader/Loader";
 import { Avatar } from "shared/ui/Avatar/Avatar";
 import { Currency, CurrencySelect } from "entities/Currency";
 import { Country, CountrySelect } from "entities/CountrySelect";
+import { getStringFromUndefined } from "shared/lib/utils/utils";
 import { Profile } from "../../model/types/profile";
 import cls from "./ProfileCard.module.scss";
 
@@ -84,12 +85,12 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           type="text"
           placeholder={t("Имя пользователя")}
           className={cls.input}
-          value={data?.first}
+          value={getStringFromUndefined(data?.first)}
           readOnly={readOnly}
           onChange={onChangeFirstname}
         />
         <Input
-          value={data?.lastname}
+          value={getStringFromUndefined(data?.lastname)}
           type="text"
           placeholder={t("Фамиля пользователя")}
           className={cls.input}
@@ -97,7 +98,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           onChange={onChangeLastname}
         />
         <Input
-          value={data?.city}
+          value={getStringFromUndefined(data?.city)}
           type="text"
           placeholder={t("Город")}
           className={cls.input}
@@ -105,7 +106,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           onChange={onChangeCity}
         />
         <Input
-          value={data?.avatar}
+          value={getStringFromUndefined(data?.avatar)}
           type="text"
           placeholder={t("Аватар")}
           className={cls.input}
@@ -113,7 +114,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           onChange={onChangeAvatar}
         />
         <Input
-          value={data?.age}
+          value={data?.age ?? 0}
           type="text"
           placeholder={t("Возраст")}
           className={cls.input}
@@ -121,7 +122,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           onChange={onChangeAge}
         />
         <Input
-          value={data?.username}
+          value={getStringFromUndefined(data?.username)}
           type="text"
           placeholder={t("Ник")}
           className={cls.input}
@@ -132,13 +133,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           className={cls.input}
           readOnly={readOnly}
           onChange={onChangeCurrency}
-          value={data?.currency}
-        />{" "}
+          value={data?.currency ?? Currency.RUB}
+        />
         <CountrySelect
           className={cls.input}
           readOnly={readOnly}
           onChange={onChangeCountry}
-          value={data?.country}
+          value={data?.country ?? Country.Russia}
         />
       </div>
     </div>

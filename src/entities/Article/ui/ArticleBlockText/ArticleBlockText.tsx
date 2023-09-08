@@ -17,8 +17,9 @@ export const ArticleBlockText = memo((props: ArticleBlockTextProps) => {
   return (
     <div className={classNames(cls.ArticleBlockText, {}, [className])}>
       <Text title={block?.title} className={cls.articleTitle} />
-      {block.paragraphs.map((paragraph) => (
-        <Text key={block.id} text={paragraph} />
+      {block.paragraphs.map((paragraph, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Text key={index} text={paragraph} />
       ))}
     </div>
   );
