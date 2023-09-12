@@ -15,7 +15,7 @@ import ViewIcon from "shared/assets/icons/views.svg";
 import CalendarIcon from "shared/assets/icons/calendar.svg";
 import { Icon } from "shared/ui/Icon/Icon";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
-import { fetchArticleDetailsData } from "../../model/services/fetchArticleDetailsData";
+import { fetchArticleDetailsData } from "../../model/services/fetchArticleDetailsData/fetchArticleDetailsData";
 import {
   getArticleDetailsData,
   getArticleDetailsError,

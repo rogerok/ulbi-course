@@ -1,5 +1,6 @@
 export { ArticleDetails } from "./ui/ArticleDetails/ArticleDetails";
-export { Article, ArticleSchema } from "./model/types/Article";
+export { ArticleList } from "./ui/ArticleList/ArticleList";
+export { Article, ArticleSchema, ArticleView } from "./model/types/Article";
 export {
   articleDetailsReducer,
   articleDetailsActions,

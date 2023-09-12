@@ -50,3 +50,8 @@ export interface ArticleSchema {
   error?: string;
   isLoading: boolean;
 }
+
+export enum ArticleView {
+  BIG = "BIG",
+  SMALl = "SMALl",
+}
