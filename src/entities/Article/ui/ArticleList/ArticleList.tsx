@@ -18,7 +18,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
   const { t } = useTranslation();
 
   const renderArticle = (article: Article) => (
-    <ArticleListItem articleData={article} view={view} />
+    <ArticleListItem articleData={article} view={view} key={article.id} />
   );
 
   return (

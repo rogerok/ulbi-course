@@ -30,7 +30,7 @@ const reducerList: ReducerList = {
   comments: articleDetailsPageCommentReducer,
 };
 
-const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
+export const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
   const { className } = props;
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
