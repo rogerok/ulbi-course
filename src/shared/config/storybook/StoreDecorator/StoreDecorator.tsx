@@ -8,18 +8,18 @@ import { addCommentFormReducer } from 'features/addCommentForm/model/slices/addC
 import { articleDetailsCommentsReducer } from 'pages/ArticleDetailsPage/model/slices/articleDetailsCommentsSlice';
 
 const defaultAsyncReducers: ReducersList = {
-    loginForm: loginReducer,
-    profile: profileReducer,
-    articleDetails: articleDetailsReducer,
-    addCommentForm: addCommentFormReducer,
-    articleDetailsComments: articleDetailsCommentsReducer,
+  loginForm: loginReducer,
+  profile: profileReducer,
+  articleDetails: articleDetailsReducer,
+  addCommentForm: addCommentFormReducer,
+  articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 export const StoreDecorator = (
-    state: DeepPartial<StateSchema>,
-    asyncReducers?: ReducersList,
+  state: DeepPartial<StateSchema>,
+  asyncReducers?: ReducersList,
 ) => (StoryComponent: Story) => (
     <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
-        <StoryComponent />
-    </StoreProvider>
+      <StoryComponent />
+  </StoreProvider>
 );

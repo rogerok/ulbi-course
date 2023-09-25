@@ -1,5 +1,5 @@
 export {
-    ArticleDetails,
+  ArticleDetails,
 } from './ui/ArticleDetails/ArticleDetails';
 
 export { Article, ArticleView } from './model/types/article';

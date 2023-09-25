@@ -9,13 +9,13 @@ import { ErrorBoundary } from './app/providers/ErrorBoundary';
 
 render(
     <BrowserRouter>
-        <StoreProvider>
-            <ErrorBoundary>
-                <ThemeProvider>
-                    <App />
-                </ThemeProvider>
-            </ErrorBoundary>
-        </StoreProvider>
-    </BrowserRouter>,
-    document.getElementById('root'),
+      <StoreProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <App />
+        </ThemeProvider>
+      </ErrorBoundary>
+    </StoreProvider>
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
