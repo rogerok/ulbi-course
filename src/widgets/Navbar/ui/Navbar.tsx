@@ -8,7 +8,7 @@ import { getUserAuthData, userActions } from 'entities/User';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
-    className?: string;
+  className?: string;
 }
 
 export const Navbar = memo(({ className }: NavbarProps) => {
@@ -31,33 +31,30 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
   if (authData) {
     return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
-          <Button
-            theme={ButtonTheme.CLEAR_INVERTED}
-            className={cls.links}
-            onClick={onLogout}
+      <header className={classNames(cls.Navbar, {}, [className])}>
+        <Button
+          theme={ButtonTheme.CLEAR_INVERTED}
+          className={cls.links}
+          onClick={onLogout}
         >
-            {t('Выйти')}
+          {t('Выйти')}
         </Button>
-      </div>
+      </header>
     );
   }
 
   return (
-      <div className={classNames(cls.Navbar, {}, [className])}>
-        <Button
-          theme={ButtonTheme.CLEAR_INVERTED}
-          className={cls.links}
-          onClick={onShowModal}
+    <header className={classNames(cls.Navbar, {}, [className])}>
+      <Button
+        theme={ButtonTheme.CLEAR_INVERTED}
+        className={cls.links}
+        onClick={onShowModal}
       >
-          {t('Войти')}
+        {t('Войти')}
       </Button>
-        {isAuthModal && (
-      <LoginModal
-            isOpen={isAuthModal}
-            onClose={onCloseModal}
-        />
+      {isAuthModal && (
+        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
       )}
-    </div>
+    </header>
   );
 });
