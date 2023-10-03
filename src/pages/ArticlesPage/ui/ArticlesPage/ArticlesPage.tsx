@@ -11,7 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 import { initArticlesPage } from 'pages/ArticlesPage/model/services/initArticlesPage';
 import {
   getArticlesError,
