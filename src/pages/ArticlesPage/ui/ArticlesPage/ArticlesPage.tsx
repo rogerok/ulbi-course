@@ -4,28 +4,29 @@ import React, { memo, useCallback } from 'react';
 import { ArticleList, ArticleView } from 'entities/Article';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles';
 import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useSelector } from 'react-redux';
+import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { ArticleViewSelector } from 'features/ArticleViewSelector';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
+import { initArticlesPage } from 'pages/ArticlesPage/model/services/initArticlesPage';
+import {
+  getArticlesError,
+  getArticlesHasMore,
+  getArticlesIsInited,
+  getArticlesIsLoading,
+  getArticlesPage,
+  getArticlesView,
+} from '../../model/selectors/articlesSelector';
 import {
   articlesPageActions,
   articlesPageReducer,
   getArticles,
-} from 'pages/ArticlesPage/model/slices/articlesPageSlice';
-import { useSelector } from 'react-redux';
-import {
-  getArticlesError,
-  getArticlesHasMore,
-  getArticlesIsLoading,
-  getArticlesPage,
-  getArticlesView,
-} from 'pages/ArticlesPage/model/selectors/articlesSelector';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
-import { ArticleViewSelector } from 'features/ArticleViewSelector';
-import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
-import { fetchArticlesNextPage } from 'pages/ArticlesPage/model/services/fetchArticlesNextPage';
+} from '../../model/slices/articlesPageSlice';
+import { fetchArticlesNextPage } from '../../model/services/fetchArticlesNextPage';
 import cls from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
@@ -46,6 +47,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const view = useSelector(getArticlesView);
   const page = useSelector(getArticlesPage);
   const hasMore = useSelector(getArticlesHasMore);
+  const inited = useSelector(getArticlesIsInited);
 
   const handleViewChange = useCallback(
     (view: ArticleView) => {
@@ -59,12 +61,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   }, [dispatch]);
 
   useInitialEffect(() => {
-    dispatch(articlesPageActions.initState());
-    dispatch(
-      fetchArticles({
-        page: 1,
-      }),
-    );
+    dispatch(initArticlesPage());
   });
 
   if (error) {
@@ -79,7 +76,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <PageWrapper
         className={classNames(cls.ArticlesPage, {}, [className])}
         onScrollEnd={onLoadNextPage}
