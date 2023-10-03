@@ -37,6 +37,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
     <div className={classNames(cls.ArticleViewSelector, {}, [className])}>
       {viewItems.map((item) => (
         <Button
+          key={item.view}
           theme={ButtonTheme.CLEAR}
           onClick={handleViewClick(item.view)}
           disabled={item.view === view}
