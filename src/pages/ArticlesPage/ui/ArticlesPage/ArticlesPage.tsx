@@ -16,6 +16,8 @@ import { ArticlesPageFilter } from 'pages/ArticlesPage/ui/ArticlePageFilter/Arti
 import {
   getArticlesError,
   getArticlesIsLoading,
+  getArticlesSortField,
+  getArticlesSortOrder,
   getArticlesView,
 } from '../../model/selectors/articlesSelector';
 import {
@@ -70,7 +72,12 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         <div className={cls.switchers}>
           <ArticlesPageFilter />
         </div>
-        <ArticleList isLoading={isLoading} view={view} articles={articles} />
+        <ArticleList
+          className={cls.articleList}
+          isLoading={isLoading}
+          view={view}
+          articles={articles}
+        />
       </PageWrapper>
     </DynamicModuleLoader>
   );
