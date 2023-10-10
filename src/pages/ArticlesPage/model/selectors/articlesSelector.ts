@@ -20,3 +20,5 @@ export const getArticlesSortOrder = (state: StateSchema): SortOrder =>
   state.articles?.order ?? 'asc';
 export const getArticlesSortField = (state: StateSchema): ArticleSortField =>
   state.articles?.sort ?? ArticleSortField.CREATED;
+export const getArticlesSearch = (state: StateSchema) =>
+  state.articles?.search ?? '';

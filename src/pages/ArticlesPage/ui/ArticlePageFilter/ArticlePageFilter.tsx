@@ -9,8 +9,11 @@ import { Input } from 'shared/ui/Input/Input';
 import { Card } from 'shared/ui/Card/Card';
 import { SortOrder } from 'shared/types/SortOrder';
 import { ArticleSelector } from 'features/ArticleSort';
+import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import {
+  getArticlesSearch,
   getArticlesSortField,
   getArticlesSortOrder,
   getArticlesView,
@@ -28,6 +31,17 @@ export const ArticlesPageFilter = (props: ArticlesPageFilterProps) => {
   const view = useSelector(getArticlesView);
   const sortOrder = useSelector(getArticlesSortOrder);
   const sortField = useSelector(getArticlesSortField);
+  const search = useSelector(getArticlesSearch);
+
+  const fetchData = useCallback(() => {
+    dispatch(
+      fetchArticles({
+        replace: true,
+      }),
+    );
+  }, [dispatch]);
+
+  const debounceFetchData = useDebounce(fetchData, 500);
 
   const handleViewChange = useCallback(
     (view: ArticleView) => {
@@ -39,14 +53,28 @@ export const ArticlesPageFilter = (props: ArticlesPageFilterProps) => {
   const handleSortFieldChange = useCallback(
     (field: ArticleSortField) => {
       dispatch(articlesPageActions.setSort(field));
+      dispatch(articlesPageActions.setPage(1));
+      fetchData();
     },
-    [dispatch],
+    [dispatch, fetchData],
   );
+
   const handleSortOrderChange = useCallback(
     (order: SortOrder) => {
       dispatch(articlesPageActions.setOrder(order));
+      dispatch(articlesPageActions.setPage(1));
+      fetchData();
     },
-    [dispatch],
+    [dispatch, fetchData],
+  );
+
+  const handleSearchChange = useCallback(
+    (search: string) => {
+      dispatch(articlesPageActions.setSearch(search));
+      dispatch(articlesPageActions.setPage(1));
+      debounceFetchData();
+    },
+    [dispatch, debounceFetchData],
   );
 
   return (
@@ -65,7 +93,11 @@ export const ArticlesPageFilter = (props: ArticlesPageFilterProps) => {
         />
       </div>
       <Card>
-        <Input placeholder={t('Поиск')} />
+        <Input
+          value={search}
+          onChange={handleSearchChange}
+          placeholder={t('Поиск')}
+        />
       </Card>
     </div>
   );
