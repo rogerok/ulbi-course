@@ -8,6 +8,7 @@ import {
   getArticlesSortField,
   getArticlesSortOrder,
 } from 'pages/ArticlesPage/model/selectors/articlesSelector';
+import { addQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
 
 interface FetchArticlesProps {
   replace?: boolean;
@@ -19,19 +20,21 @@ export const fetchArticles = createAsyncThunk<
   ThunkConfig<string>
 >('articlesPage/fetchArticles', async (_, thunkApi) => {
   const { extra, rejectWithValue, getState } = thunkApi;
-  const sortOrder = getArticlesSortOrder(getState());
-  const sortField = getArticlesSortField(getState());
+  const order = getArticlesSortOrder(getState());
+  const limit = getArticlesLimit(getState());
+  const sort = getArticlesSortField(getState());
   const search = getArticlesSearch(getState());
   const page = getArticlesPage(getState());
 
   try {
+    addQueryParams({ sort, order, search });
     const response = await extra.api.get<Article[]>('/articles', {
       params: {
         _expand: 'user',
-        _limit: getArticlesLimit(getState()),
+        _limit: limit,
         _page: page,
-        _sort: sortField,
-        _order: sortOrder,
+        _sort: order,
+        _order: sort,
         q: search,
       },
     });

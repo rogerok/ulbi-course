@@ -13,11 +13,10 @@ import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 import { initArticlesPage } from 'pages/ArticlesPage/model/services/initArticlesPage';
 import { ArticlesPageFilter } from 'pages/ArticlesPage/ui/ArticlePageFilter/ArticlePageFilter';
+import { useSearchParams } from 'react-router-dom';
 import {
   getArticlesError,
   getArticlesIsLoading,
-  getArticlesSortField,
-  getArticlesSortOrder,
   getArticlesView,
 } from '../../model/selectors/articlesSelector';
 import {
@@ -43,13 +42,14 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const isLoading = useSelector(getArticlesIsLoading);
   const error = useSelector(getArticlesError);
   const view = useSelector(getArticlesView);
+  const [searchParams] = useSearchParams();
 
   const onLoadNextPage = useCallback(() => {
     dispatch(fetchArticlesNextPage());
   }, [dispatch]);
 
   useInitialEffect(() => {
-    dispatch(initArticlesPage());
+    dispatch(initArticlesPage(searchParams));
   });
 
   if (error) {
