@@ -1,6 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { SortOrder } from 'shared/types/SortOrder';
-import { ArticleSortField } from 'entities/Article';
+import { ArticleSortField, ArticleType } from 'entities/Article';
 
 export const getArticlesIsLoading = (state: StateSchema) =>
   state.articles?.isLoading;
@@ -22,3 +22,5 @@ export const getArticlesSortField = (state: StateSchema): ArticleSortField =>
   state.articles?.sort ?? ArticleSortField.CREATED;
 export const getArticlesSearch = (state: StateSchema) =>
   state.articles?.search ?? '';
+export const getArticleType = (state: StateSchema) =>
+  state.articles?.type ?? ArticleType.ALL;
