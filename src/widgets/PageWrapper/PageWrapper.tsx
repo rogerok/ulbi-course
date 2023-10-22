@@ -52,7 +52,7 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
       onScroll={onScroll}
     >
       {children}
-      <div ref={triggerRef} />
+      {onScrollEnd && <div ref={triggerRef} className={cls.trigger} />}
     </section>
   );
 });
