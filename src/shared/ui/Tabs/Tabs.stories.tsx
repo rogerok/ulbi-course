@@ -40,6 +40,6 @@ export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
   value: 'IT',
   tabs,
-  onClickTab: action('onTabClick'),
+  onTabClick: action('onTabClick'),
 };
 Primary.decorators = [ThemeDecorator(Theme.DARK)];
