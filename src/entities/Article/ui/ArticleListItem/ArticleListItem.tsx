@@ -9,6 +9,7 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import cls from './ArticleListItem.module.scss';
 import {
   Article,
@@ -43,7 +44,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
   if (view === ArticleView.BIG) {
     const textBlock = article.blocks.find(
-      (block) => block.type === ArticleBlockType.TEXT
+      (block) => block.type === ArticleBlockType.TEXT,
     ) as ArticleTextBlock;
 
     return (
@@ -66,9 +67,15 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             />
           )}
           <div className={cls.footer}>
-            <Button onClick={onOpenArticle} theme={ButtonTheme.OUTLINE}>
-              {t('Читать далее...')}
-            </Button>
+            <AppLink
+              to={RoutePath.article_details + article.id}
+              target="_blank"
+            >
+              <Button theme={ButtonTheme.OUTLINE}>
+                {t('Читать далее...')}
+              </Button>
+            </AppLink>
+
             {views}
           </div>
         </Card>
@@ -77,10 +84,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
   }
 
   return (
-    <div
+    <AppLink
+      to={RoutePath.article_details + article.id}
+      target="_blank"
       className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
     >
-      <Card className={cls.card} onClick={onOpenArticle}>
+      <Card className={cls.card}>
         <div className={cls.imageWrapper}>
           <img alt={article.title} src={article.img} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />
@@ -91,6 +100,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         </div>
         <Text text={article.title} className={cls.title} />
       </Card>
-    </div>
+    </AppLink>
   );
 });
