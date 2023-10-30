@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { classNames } from 'shared/lib/classNames/classNames';
 import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 import { useTranslation } from 'react-i18next';
