@@ -1,8 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
+import { memo, ReactNode } from 'react';
 import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItem/ArticleListItemSkeleton';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
+import { Virtuoso } from 'react-virtuoso';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
@@ -44,7 +45,13 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {articles.length && articles.map(renderArticle)}
+      {articles.length && (
+        <Virtuoso
+          totalCount={articles.length}
+          data={articles}
+          itemContent={(index) => renderArticle(articles[index])}
+        />
+      )}
       {isLoading && getSkeletons(view)}
     </div>
   );
