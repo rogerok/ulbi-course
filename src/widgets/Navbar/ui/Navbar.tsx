@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -38,7 +37,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         <AppLink to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY}>
           {t('Создать статью')}
         </AppLink>
-        <Text text="123" theme={TextTheme.INVERTED} />
         <Button
           theme={ButtonTheme.CLEAR_INVERTED}
           className={cls.links}
