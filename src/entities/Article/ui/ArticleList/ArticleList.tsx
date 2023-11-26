@@ -13,6 +13,8 @@ interface ArticleListProps {
   articles: Article[];
   isLoading?: boolean;
   view?: ArticleView;
+  onLoadNextPage?: () => void;
+  Header?: ReactNode;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -23,10 +25,17 @@ const getSkeletons = (view: ArticleView) =>
     ));
 
 export const ArticleList = memo((props: ArticleListProps) => {
-  const { className, articles, view = ArticleView.SMALL, isLoading } = props;
+  const {
+    className,
+    articles,
+    view = ArticleView.SMALL,
+    isLoading,
+    onLoadNextPage,
+    Header,
+  } = props;
   const { t } = useTranslation();
 
-  const renderArticle = (article: Article) => (
+  const renderArticle = (index: number, article: Article) => (
     <ArticleListItem
       article={article}
       view={view}
@@ -45,14 +54,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {articles.length && (
+      {!!articles.length && (
         <Virtuoso
+          style={{
+            height: '100vh',
+          }}
           totalCount={articles.length}
           data={articles}
-          itemContent={(index) => renderArticle(articles[index])}
+          itemContent={renderArticle}
+          endReached={onLoadNextPage}
+          components={{
+            Header: memo(() => <div>{Header}</div>),
+            Footer: memo(() => <div>{isLoading && getSkeletons(view)}</div>),
+          }}
         />
       )}
-      {isLoading && getSkeletons(view)}
     </div>
   );
 });

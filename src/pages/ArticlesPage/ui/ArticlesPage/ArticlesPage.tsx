@@ -65,18 +65,18 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-      <PageWrapper
-        className={classNames(cls.ArticlesPage, {}, [className])}
-        onScrollEnd={onLoadNextPage}
-      >
-        <div className={cls.switchers}>
-          <ArticlesPageFilter />
-        </div>
+      <PageWrapper className={classNames(cls.ArticlesPage, {}, [className])}>
         <ArticleList
           className={cls.articleList}
           isLoading={isLoading}
           view={view}
           articles={articles}
+          Header={
+            <div className={cls.switchers}>
+              <ArticlesPageFilter />
+            </div>
+          }
+          onLoadNextPage={onLoadNextPage}
         />
       </PageWrapper>
     </DynamicModuleLoader>
