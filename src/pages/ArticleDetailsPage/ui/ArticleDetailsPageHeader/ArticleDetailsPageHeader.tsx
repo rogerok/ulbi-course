@@ -26,7 +26,7 @@ export const ArticleDetailsPageHeader = (
   });
 
   const onBackToList = useCallback(() => {
-    navigate(RoutePath.article_create);
+    navigate(RoutePath.articles);
   }, [navigate]);
 
   const goToEditPage = useCallback(() => {
