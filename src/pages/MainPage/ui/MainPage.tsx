@@ -1,11 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
+import { Text } from 'shared/ui/Text/Text';
 
 const MainPage = () => {
   const { t } = useTranslation();
 
-  return <PageWrapper>{t('Главная страница')}</PageWrapper>;
+  return (
+    <PageWrapper>
+      <Text text={t('Главная страница')} Tag="h1" />
+    </PageWrapper>
+  );
 };
 
 export default MainPage;

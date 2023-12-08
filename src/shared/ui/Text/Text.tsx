@@ -19,6 +19,9 @@ export enum TextSize {
   L = 'size_l',
 }
 
+export type TextTag = 'h1' | 'h2' | 'h3' | 'p' | 'span';
+
+
 interface TextProps {
   className?: string;
   title?: string;
@@ -26,6 +29,7 @@ interface TextProps {
   theme?: TextTheme;
   align?: TextAlign;
   size?: TextSize;
+  Tag?: TextTag;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -36,6 +40,7 @@ export const Text = memo((props: TextProps) => {
     theme = TextTheme.PRIMARY,
     align = TextAlign.LEFT,
     size = TextSize.M,
+    Tag = 'p'
   } = props;
 
   const mods: Mods = {
@@ -46,8 +51,8 @@ export const Text = memo((props: TextProps) => {
 
   return (
     <div className={classNames(cls.Text, mods, [className])}>
-      {title && <p className={cls.title}>{title}</p>}
-      {text && <p className={cls.text}>{text}</p>}
+      {title && <Tag className={cls.title}>{title}</Tag>}
+      {text && <Tag className={cls.text}>{text}</Tag>}
     </div>
   );
 });
