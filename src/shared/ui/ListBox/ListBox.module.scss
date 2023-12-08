@@ -1,0 +1,57 @@
+.ListBox {
+  background: none;
+  outline: none;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  position: relative;
+}
+.button {
+  width: 100%;
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.trigger {
+  width: 100%;
+}
+
+.arrows {
+  font-size: var(--font-size-l);
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.options {
+  color: var(--secondary-color);
+  background: var(--listbox-bg);
+  list-style-type: none;
+  padding: 0.4rem;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.optionInner {
+  transition: 0.1s all;
+  border-radius: .4rem;
+  padding: .4rem;
+
+  &:hover {
+    background: var(--inverted-primary-color);
+    cursor: pointer;
+    opacity: 0.8;
+    color: #ffffff;
+  }
+}
+
+.active {
+  color: var(--secondary-color);
+}
+
+.selected {
+  color: var(--inverted-secondary-color);
+}
