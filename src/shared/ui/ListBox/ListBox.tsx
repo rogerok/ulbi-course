@@ -22,7 +22,6 @@ interface ListBoxProps<T extends string> {
 export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
   const { className, defaultValue, label, options, onChange, value, readonly } =
     props;
-
   return (
     <Listbox
       as="div"
