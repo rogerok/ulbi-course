@@ -36,7 +36,7 @@ export const Dropdown = (props: DropdownProps) => {
       <Menu.Button className={cls.button}>{trigger}</Menu.Button>
       <Menu.Items as="div" className={classNames(cls.menu, {}, optionsClasses)}>
         {items.map((item) => (
-          <Menu.Item as={Fragment} disabled={item.disabled}>
+          <Menu.Item as={Fragment} disabled={item.disabled} key={item.content}>
             {({ active }) =>
               item.href ? (
                 <AppLink

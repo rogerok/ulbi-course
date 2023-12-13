@@ -11,19 +11,17 @@ import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
-import {
-  ArticleDetailsCommentsSchema,
-  ArticleDetailsRecommendationSchema,
-  ArticleDetailsPageSchema,
-} from 'pages/ArticleDetailsPage';
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/addCommentForm';
 import { ArticlesSchema } from 'pages/ArticlesPage/model/types/articlesSchema';
 import { ScrollSaveSchema } from 'features/ScrollSave';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
   scrollSave: ScrollSaveSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;

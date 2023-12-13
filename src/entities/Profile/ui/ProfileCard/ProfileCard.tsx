@@ -8,8 +8,8 @@ import { Currency } from 'entities/Currency/model/types/currency';
 import { CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
+import { Profile } from 'features/editableProfileCard';
 import cls from './ProfileCard.module.scss';
-import { Profile } from '../../model/types/profile';
 
 interface ProfileCardProps {
   className?: string;
