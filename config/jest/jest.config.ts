@@ -13,26 +13,24 @@ export default {
   },
   clearMocks: true,
   testEnvironment: 'jsdom',
-  coveragePathIgnorePatterns: [
-    '\\\\node_modules\\\\',
-  ],
-  moduleFileExtensions: [
-    'js',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node',
-  ],
-  moduleDirectories: [
-    'node_modules',
-  ],
-  modulePaths: [
-    '<rootDir>src',
-  ],
+  coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+  moduleDirectories: ['node_modules'],
+  modulePaths: ['<rootDir>src'],
   testMatch: [
     // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
+  ],
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '<rootDir>/reports/unit',
+        filename: 'report.html',
+        openReport: true,
+      },
+    ],
   ],
   rootDir: '../../',
   setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
@@ -106,7 +104,6 @@ export default {
   // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
 
   // Automatically reset mock state before every test
   // resetMocks: false,
