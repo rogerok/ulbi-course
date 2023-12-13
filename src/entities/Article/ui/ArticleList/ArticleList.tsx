@@ -61,7 +61,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     />
   );
 
-  if (!isLoading && !articles.length) {
+  if (!isLoading && (!articles || !articles.length)) {
     return (
       <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
         <Text title={t('Результатов не найдено')} theme={TextTheme.ERROR} />;
@@ -71,7 +71,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {!!articles.length && view === ArticleView.BIG ? (
+      {articles && !!articles.length && view === ArticleView.BIG ? (
         <Virtuoso
           style={{
             height: '100vh',
@@ -93,14 +93,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
           }}
           ref={virtuosoGridRef}
           endReached={onLoadNextPage}
-          totalCount={articles.length}
+          data={articles}
+          totalCount={articles?.length ?? 0}
           itemContent={renderArticle}
           components={{
             Item: memo(() => <div className={cls.itemContainer} />),
             Header: memo(() => <div>{Header}</div>),
             ScrollSeekPlaceholder: ItemContainer,
           }}
-          data={articles}
           initialTopMostItemIndex={initialPositionIndex}
           listClassName={cls.itemsWrapper}
           scrollSeekConfiguration={{
