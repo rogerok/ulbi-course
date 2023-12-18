@@ -4,7 +4,13 @@ import React, { memo, useCallback, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserAuthData, userActions } from 'entities/User';
+import {
+  getIsUserAdmin,
+  getIsUserManager,
+  getUserAuthData,
+  getUserRoles,
+  userActions,
+} from 'entities/User';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
@@ -19,6 +25,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(getUserAuthData);
   const dispatch = useDispatch();
+  const isAdmin = useSelector(getIsUserAdmin);
+  const isManager = useSelector(getIsUserManager);
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -31,6 +39,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
+
+  const isAdminPanelAvailable = isAdmin || isManager;
 
   if (authData) {
     return (
@@ -48,6 +58,18 @@ export const Navbar = memo(({ className }: NavbarProps) => {
               content: t('Создать статью'),
               href: RoutePath.article_create,
             },
+            {
+              content: t('Профиль'),
+              href: RoutePath.profile + authData.id,
+            },
+            ...(isAdminPanelAvailable
+              ? [
+                  {
+                    content: t('Админка'),
+                    href: RoutePath.admin_panel,
+                  },
+                ]
+              : []),
           ]}
           trigger={<Avatar size={30} src={authData.avatar} />}
         />
