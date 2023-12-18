@@ -19,20 +19,24 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
       return true;
     }
 
-    return roles.some((requiredRole) => {
-      const hasRole = userRoles?.includes(requiredRole);
-
-      return hasRole;
-    });
+    return roles.some((requiredRole) => userRoles?.includes(requiredRole));
   }, [roles, userRoles]);
 
-  if (!auth || !hasRequiredRoles) {
+  let component = children;
+
+  if (!auth) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
-    return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
+    component = (
+      <Navigate to={RoutePath.main} state={{ from: location }} replace />
+    );
+  } else if (!hasRequiredRoles) {
+    component = (
+      <Navigate to={RoutePath.forbidden} state={{ from: location }} replace />
+    );
   }
 
-  return children;
+  return component;
 }
