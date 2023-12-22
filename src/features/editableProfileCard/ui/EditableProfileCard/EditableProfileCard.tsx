@@ -14,6 +14,7 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ValidateProfileError } from 'features/editableProfileCard';
+import { useParams } from 'react-router-dom';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
@@ -25,7 +26,6 @@ import cls from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
   className?: string;
-  id: string;
 }
 
 const reducers: ReducersList = {
@@ -33,7 +33,7 @@ const reducers: ReducersList = {
 };
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
-  const { className, id } = props;
+  const { className } = props;
   const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
@@ -41,6 +41,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
+  const { id } = useParams<{ id: string }>();
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),

@@ -85,19 +85,19 @@ export const ArticlesPageFilter = (props: ArticlesPageFilterProps) => {
     () => [
       {
         value: ArticleType.ALL,
-        content: t('Все'),
+        content: <>{t('Все')}</>,
       },
       {
         value: ArticleType.IT,
-        content: t('Айти'),
+        content: <>{t('Айти')}</>,
       },
       {
         value: ArticleType.SCIENCE,
-        content: t('Наука'),
+        content: <>{t('Наука')}</>,
       },
       {
         value: ArticleType.ECONOMICS,
-        content: t('Экономика'),
+        content: <>{t('Экономика')}</>,
       },
     ],
     [t],
