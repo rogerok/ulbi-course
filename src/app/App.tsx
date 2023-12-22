@@ -17,12 +17,12 @@ function App() {
   }, [dispatch]);
 
   return (
-      <div className={classNames('app', {}, [theme])}>
-        <Suspense fallback="">
-          <Navbar />
-          <div className="content-page">
-            <Sidebar />
-            {inited && <AppRouter />}
+    <div id="app" className={classNames('app', {}, [theme])}>
+      <Suspense fallback="">
+        <Navbar />
+        <div className="content-page">
+          <Sidebar />
+          {inited && <AppRouter />}
         </div>
       </Suspense>
     </div>

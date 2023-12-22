@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { Suspense, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AddCommentForm } from 'features/addCommentForm';
 import { CommentList } from 'entities/Comment';
@@ -35,7 +35,10 @@ export const ArticleDetailsComments = (props: ArticleDetailsCommentsProps) => {
 
   return (
     <div className={classNames('', {}, [className])}>
-      <AddCommentForm onSendComment={onSendComment} />
+      <Suspense fallback="Идёт загрузка">
+        <AddCommentForm onSendComment={onSendComment} />
+      </Suspense>
+
       <CommentList isLoading={commentsIsLoading} comments={comments} />
     </div>
   );
