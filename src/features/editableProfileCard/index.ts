@@ -3,4 +3,4 @@ export { EditableProfileCardHeader } from './ui/EditableProfileCardHeader/Editab
 export type { Profile } from './model/types/editableProfileCardSchema';
 
 export { profileActions, profileReducer } from './model/slice/profileSlice';
-export { ValidateProfileError } from 'features/editableProfileCard/model/constants/constants';
+export { ValidateProfileError } from './model/constants/constants';
