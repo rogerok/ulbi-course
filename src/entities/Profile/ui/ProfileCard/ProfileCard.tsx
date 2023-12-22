@@ -4,11 +4,10 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { Currency } from 'entities/Currency/model/types/currency';
-import { CurrencySelect } from 'entities/Currency';
-import { Country } from 'entities/Country/model/types/country';
+import { Currency, CurrencySelect } from 'entities/Currency';
 import { CountrySelect } from 'entities/Country';
 import { Profile } from 'features/editableProfileCard';
+import { Country } from 'entities/Country/model/constants/constants';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
