@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { ReactNode } from 'react';
 import cls from './ListBox.module.scss';
+import popupCls from '../styles/popup.module.scss';
 
 export interface ListBoxOptions<T> {
   value?: T;
@@ -20,12 +21,11 @@ interface ListBoxProps<T extends string> {
 }
 
 export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
-  const { className, defaultValue, label, options, onChange, value, readonly } =
-    props;
+  const { className, defaultValue, options, onChange, value, readonly } = props;
   return (
     <Listbox
       as="div"
-      className={classNames(cls.ListBox, {}, [className])}
+      className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
       value={value}
       defaultValue={defaultValue}
       onChange={onChange}
@@ -51,7 +51,7 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
                     {({ active, selected }) => (
                       <li
                         className={classNames(cls.optionInner, {
-                          [cls.active]: active,
+                          [popupCls.active]: active,
                           [cls.selected]: selected,
                         })}
                       >

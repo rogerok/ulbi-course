@@ -1,0 +1,13 @@
+.Popover {
+}
+
+.panel {
+  color: var(--secondary-color);
+  background: var(--primary-color);
+  padding: 0.4rem;
+  z-index: 2;
+  position: absolute;
+  list-style-type: none;
+  flex-direction: column;
+  display: flex;
+}
