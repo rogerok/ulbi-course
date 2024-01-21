@@ -5,10 +5,11 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon, IconTheme } from 'shared/ui/Icon/Icon';
 import NotificationIcon from 'shared/assets/icons/notification.svg';
 import { NotificationList } from 'entities/Notification';
-import cls from './NotificationOpenButton.module.scss';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { BrowserView } from 'shared/ui/BrowserView/BrowserView';
 import { MobileView } from 'shared/ui/MobileView/MobileView';
+import { AnimationProvider } from 'shared/lib/components/AnimationProvider';
+import cls from './NotificationOpenButton.module.scss';
 
 interface NotificationOpenButtonProps {
   className?: string;
@@ -45,12 +46,13 @@ export const NotificationOpenButton = memo(
             <NotificationList className={cls.notifications} />
           </Popover>
         </BrowserView>
-
         <MobileView>
           {triggerButton}
-          <Drawer onClose={setDrawerClose} isOpen={isOpen}>
-            <NotificationList />
-          </Drawer>
+          <AnimationProvider>
+            <Drawer onClose={setDrawerClose} isOpen={isOpen}>
+              <NotificationList />
+            </Drawer>
+          </AnimationProvider>
         </MobileView>
       </div>
     );
