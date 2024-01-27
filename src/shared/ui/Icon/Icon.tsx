@@ -1,5 +1,5 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import React, { memo } from 'react';
+import React, { memo, SVGProps } from 'react';
 import cls from './Icon.module.scss';
 
 export enum IconTheme {
@@ -7,18 +7,18 @@ export enum IconTheme {
   INVERTED = 'inverted',
 }
 
-interface IconProps {
+interface IconProps extends SVGProps<SVGSVGElement> {
   className?: string;
   Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
   theme?: IconTheme;
 }
 
 export const Icon = memo((props: IconProps) => {
-  const { className, Svg, theme = IconTheme.PRIMARY } = props;
+  const { className, Svg, theme = IconTheme.PRIMARY, ...rest } = props;
 
   const mods: Mods = {
     [cls[theme]]: true,
   };
 
-  return <Svg className={classNames(cls.Icon, mods, [className])} />;
+  return <Svg className={classNames(cls.Icon, mods, [className])} {...rest} />;
 });
