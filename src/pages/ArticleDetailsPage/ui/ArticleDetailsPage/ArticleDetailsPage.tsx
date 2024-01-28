@@ -12,6 +12,7 @@ import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import { ArticleRecommendationList } from 'features/articleRecommendationList';
 import { ArticleDetailsComments } from 'pages/ArticleDetailsPage/ui/ArticleDetailsComments/ArticleDetailsComments';
+import { ArticleRating } from 'features/articleRating';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
@@ -46,6 +47,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <ArticleRecommendationList />
+        <ArticleRating articleId={id} />
         <Text
           size={TextSize.L}
           className={cls.commentTitle}

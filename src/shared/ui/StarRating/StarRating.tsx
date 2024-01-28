@@ -14,8 +14,8 @@ interface StarRatingProps {
 const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = memo((props: StarRatingProps) => {
-  const { className, selectedStars, onSelect, size } = props;
-  const [currentCount, setCurrentCount] = useState(0);
+  const { className, selectedStars = 0, onSelect, size } = props;
+  const [currentCount, setCurrentCount] = useState(selectedStars);
   const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
   const onHover = (starsCount: number) => () => {
