@@ -1,3 +1,4 @@
+import { getFeatureFlags } from 'shared/lib/features';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
@@ -28,6 +29,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const { className } = props;
   const { t } = useTranslation('article-details');
   const { id } = useParams<{ id: string }>();
+  const isArticleRatingEnabled = getFeatureFlags('isArticleRatingEnabled');
 
   if (!id) {
     return (
@@ -47,7 +49,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <ArticleRecommendationList />
-        <ArticleRating articleId={id} />
+        {isArticleRatingEnabled && <ArticleRating articleId={id} />}
         <Text
           size={TextSize.L}
           className={cls.commentTitle}
