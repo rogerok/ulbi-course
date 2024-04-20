@@ -8,6 +8,7 @@ import { getUserAuthData } from 'entities/User';
 import { HStack } from 'shared/ui/Stack';
 import { NotificationOpenButton } from 'features/notificationList';
 import { AvatarDropdown } from 'features/avatarDropdown';
+import { ToggleFeatures } from 'shared/lib/features';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -29,12 +30,25 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
   if (authData) {
     return (
-      <header className={classNames(cls.Navbar, {}, [className])}>
-        <HStack gap={16} className={cls.actions}>
-          <NotificationOpenButton />
-          <AvatarDropdown />
-        </HStack>
-      </header>
+      <ToggleFeatures
+        feature="isAppRedesigned"
+        off={
+          <header className={classNames(cls.Navbar, {}, [className])}>
+            <HStack gap={16} className={cls.actions}>
+              <NotificationOpenButton />
+              <AvatarDropdown />
+            </HStack>
+          </header>
+        }
+        on={
+          <header className={classNames(cls.NavbarRedesigned, {}, [className])}>
+            <HStack gap={16} className={cls.actions}>
+              <NotificationOpenButton />
+              <AvatarDropdown />
+            </HStack>
+          </header>
+        }
+      />
     );
   }
 

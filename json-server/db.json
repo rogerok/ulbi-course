@@ -706,7 +706,8 @@
         "ADMIN"
       ],
       "features": {
-        "isArticleRatingEnabled": false
+        "isArticleRatingEnabled": false,
+        "isAppRedesigned": true
       },
       "avatar": "https://yakutsk.ru/wp-content/uploads/2022/07/12/bystrov_haker.jpeg"
     },
