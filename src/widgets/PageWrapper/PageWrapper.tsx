@@ -9,6 +9,7 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 import cls from './PageWrapper.module.scss';
+import { toggleFeatures } from 'shared/lib/features/toggleFeatures';
 
 interface PageWrapperProps {
   className?: string;
@@ -48,7 +49,15 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
   return (
     <section
       ref={wrapperRef}
-      className={classNames(cls.PageWrapper, {}, [className])}
+      className={classNames(
+        toggleFeatures({
+          name: 'isAppRedesigned',
+          on: () => cls.PageWrapperRedesigned,
+          off: () => cls.PageWrapper,
+        }),
+        {},
+        [className],
+      )}
       onScroll={onScroll}
     >
       {children}
